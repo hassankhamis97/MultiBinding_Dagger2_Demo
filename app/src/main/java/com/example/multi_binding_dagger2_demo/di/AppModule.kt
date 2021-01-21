@@ -1,5 +1,8 @@
 package com.example.multi_binding_dagger2_demo.di
 
+import androidx.lifecycle.ViewModelProvider
+import com.example.multi_binding_dagger2_demo.DaggerViewModelFactory
+import com.example.multi_binding_dagger2_demo.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -54,4 +57,7 @@ abstract class AppModule {
     @IntoMap
     @ClassKey(WelcomeStringProviderImp::class)
     abstract fun bindWelcome(welcomeStringProviderImp: WelcomeStringProviderImp): StringProvider
+
+    @Binds
+    abstract fun bindViewModelFactory(daggerViewModelFactory: DaggerViewModelFactory): ViewModelProvider.Factory
 }

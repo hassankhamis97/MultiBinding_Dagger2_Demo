@@ -14,7 +14,17 @@ class MainViewModel constructor(val provider: StringProvider): ViewModel() {
     }
 }
 
-class MainViewModelFactory @Inject constructor(val provider: Map<Class<*>, @JvmSuppressWildcards StringProvider>): ViewModelProvider.Factory {
+//class MainViewModelFactory @Inject constructor(val provider: Map<Class<*>, @JvmSuppressWildcards StringProvider>): ViewModelProvider.Factory {
+//    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+//        @Suppress("UNCHECKED_CAST")
+//        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+//            return MainViewModel(provider[WelcomeStringProviderImp::class.java]!!) as T
+//        }
+//        throw IllegalArgumentException("Unknown ViewModel class")
+//    }
+//}
+
+class DaggerViewModelFactory @Inject constructor(val provider: Map<Class<*>, @JvmSuppressWildcards StringProvider>): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {

@@ -17,7 +17,7 @@ class MainActivity : DaggerAppCompatActivity() {
     lateinit var viewModel: MainViewModel
 
     @Inject
-    lateinit var viewModelFactory: MainViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
