@@ -8,7 +8,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
-    private val TAG = "MainActivity"
+    private val TAG = "StringProvider"
     @Inject
     lateinit var stringProvider: Set<@JvmSuppressWildcards StringProvider>
 
@@ -16,5 +16,9 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate: $stringProvider")
+        stringProvider.forEach {
+            Log.d(TAG, "onCreate: ${it.provide()}")
+        }
+
     }
 }
