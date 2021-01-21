@@ -10,7 +10,7 @@ import javax.inject.Inject
 class MainActivity : DaggerAppCompatActivity() {
     private val TAG = "MainActivity"
     @Inject
-    lateinit var stringProvider: StringProvider
+    lateinit var stringProvider: Set<@JvmSuppressWildcards StringProvider>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

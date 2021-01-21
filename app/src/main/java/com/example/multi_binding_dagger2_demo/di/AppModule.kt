@@ -17,6 +17,12 @@ class HelloWorldStringProviderImp @Inject constructor(): StringProvider {
     }
 }
 
+class WelcomeStringProviderImp @Inject constructor(): StringProvider {
+    override fun provide(): String {
+        return "Welcome"
+    }
+}
+
 @Module
 abstract class AppModule {
 //    @Provides
@@ -25,5 +31,10 @@ abstract class AppModule {
 //    }
 
     @Binds
+    @IntoSet
     abstract fun bindHelloWorld(helloWorldStringProviderImp: HelloWorldStringProviderImp): StringProvider
+
+    @Binds
+    @IntoSet
+    abstract fun bindWelcome(welcomeStringProviderImp: WelcomeStringProviderImp): StringProvider
 }
