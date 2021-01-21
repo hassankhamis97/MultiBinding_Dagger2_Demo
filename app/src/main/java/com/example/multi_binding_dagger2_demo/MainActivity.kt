@@ -10,15 +10,20 @@ import javax.inject.Inject
 class MainActivity : DaggerAppCompatActivity() {
     private val TAG = "StringProvider"
     @Inject
-    lateinit var stringProvider: Set<@JvmSuppressWildcards StringProvider>
+    lateinit var stringProvider: Map<String, @JvmSuppressWildcards StringProvider>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate: $stringProvider")
         stringProvider.forEach {
-            Log.d(TAG, "onCreate: ${it.provide()}")
+            Log.d(TAG, "onCreate: ${it.value.provide()}")
         }
+
+        val strProv = stringProvider["HelloWorld"]
+
+        Log.d(TAG, "strProv = $strProv")
+
 
     }
 }
