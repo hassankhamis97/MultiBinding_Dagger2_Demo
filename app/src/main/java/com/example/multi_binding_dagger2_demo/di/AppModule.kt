@@ -30,11 +30,21 @@ abstract class AppModule {
 //        return HelloWorldStringProviderImp()
 //    }
 
-    @Binds
-    @IntoSet
-    abstract fun bindHelloWorld(helloWorldStringProviderImp: HelloWorldStringProviderImp): StringProvider
+//    @Binds
+//    @IntoSet
+//    abstract fun bindHelloWorld(helloWorldStringProviderImp: HelloWorldStringProviderImp): StringProvider
+//
+//    @Binds
+//    @IntoSet
+//    abstract fun bindWelcome(welcomeStringProviderImp: WelcomeStringProviderImp): StringProvider
 
-    @Binds
-    @IntoSet
-    abstract fun bindWelcome(welcomeStringProviderImp: WelcomeStringProviderImp): StringProvider
+    companion object {
+        @Provides
+        fun provideStringProvider(): Set<StringProvider> {
+            return setOf(
+                    HelloWorldStringProviderImp(),
+                    WelcomeStringProviderImp()
+            )
+        }
+    }
 }
