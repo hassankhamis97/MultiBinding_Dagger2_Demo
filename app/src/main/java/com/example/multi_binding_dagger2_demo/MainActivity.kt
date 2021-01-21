@@ -3,6 +3,7 @@ package com.example.multi_binding_dagger2_demo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.multi_binding_dagger2_demo.di.HelloWorldStringProviderImp
 import com.example.multi_binding_dagger2_demo.di.StringProvider
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -10,7 +11,7 @@ import javax.inject.Inject
 class MainActivity : DaggerAppCompatActivity() {
     private val TAG = "StringProvider"
     @Inject
-    lateinit var stringProvider: Map<String, @JvmSuppressWildcards StringProvider>
+    lateinit var stringProvider: Map<Class<*>, @JvmSuppressWildcards StringProvider>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class MainActivity : DaggerAppCompatActivity() {
             Log.d(TAG, "onCreate: ${it.value.provide()}")
         }
 
-        val strProv = stringProvider["HelloWorld"]
+        val strProv = stringProvider[HelloWorldStringProviderImp::class.java]
 
         Log.d(TAG, "strProv = $strProv")
 

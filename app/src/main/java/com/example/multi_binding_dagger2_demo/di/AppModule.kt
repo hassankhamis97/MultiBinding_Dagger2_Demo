@@ -3,6 +3,7 @@ package com.example.multi_binding_dagger2_demo.di
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 import dagger.multibindings.IntoSet
 import dagger.multibindings.StringKey
@@ -46,11 +47,11 @@ abstract class AppModule {
 
     @Binds
     @IntoMap
-    @StringKey("HelloWorld")
+    @ClassKey(HelloWorldStringProviderImp::class)
     abstract fun bindHelloWorld(helloWorldStringProviderImp: HelloWorldStringProviderImp): StringProvider
 
     @Binds
     @IntoMap
-    @StringKey("Welcome")
+    @ClassKey(WelcomeStringProviderImp::class)
     abstract fun bindWelcome(welcomeStringProviderImp: WelcomeStringProviderImp): StringProvider
 }
