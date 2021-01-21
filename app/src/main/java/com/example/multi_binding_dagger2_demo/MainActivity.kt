@@ -3,15 +3,18 @@ package com.example.multi_binding_dagger2_demo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.ViewModelProvider
 import com.example.multi_binding_dagger2_demo.di.HelloWorldStringProviderImp
 import com.example.multi_binding_dagger2_demo.di.StringProvider
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
-    private val TAG = "StringProvider"
+    private val TAG = "MultiBinding_Dagger2_Demo"
     @Inject
     lateinit var stringProvider: Map<Class<*>, @JvmSuppressWildcards StringProvider>
+
+    lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +27,7 @@ class MainActivity : DaggerAppCompatActivity() {
         val strProv = stringProvider[HelloWorldStringProviderImp::class.java]
 
         Log.d(TAG, "strProv = $strProv")
-
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
     }
 }
