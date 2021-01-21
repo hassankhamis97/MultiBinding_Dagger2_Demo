@@ -16,6 +16,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     lateinit var viewModel: MainViewModel
 
+    @Inject
     lateinit var viewModelFactory: MainViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         Log.d(TAG, "strProv = $strProv")
 
-        viewModelFactory = MainViewModelFactory(strProv!!)
+//        viewModelFactory = MainViewModelFactory(strProv!!)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
