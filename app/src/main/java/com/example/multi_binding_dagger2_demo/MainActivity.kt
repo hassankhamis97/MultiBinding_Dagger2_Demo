@@ -16,6 +16,8 @@ class MainActivity : DaggerAppCompatActivity() {
 
     lateinit var viewModel: MainViewModel
 
+    lateinit var viewModelFactory: MainViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,7 +29,11 @@ class MainActivity : DaggerAppCompatActivity() {
         val strProv = stringProvider[HelloWorldStringProviderImp::class.java]
 
         Log.d(TAG, "strProv = $strProv")
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        viewModelFactory = MainViewModelFactory(strProv!!.provide())
+
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+
 
     }
 }
