@@ -30,7 +30,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         Log.d(TAG, "strProv = $strProv")
 
-        viewModelFactory = MainViewModelFactory(strProv!!.provide())
+        viewModelFactory = MainViewModelFactory(strProv!!)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
