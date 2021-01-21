@@ -18,7 +18,7 @@ class HelloWorldStringProviderImp: StringProvider {
 @Module
 class AppModule {
     @Provides
-    fun provideRepoImp(): StringProvider{
+    fun provideStringProviderImp(): StringProvider{
         return HelloWorldStringProviderImp()
     }
 
