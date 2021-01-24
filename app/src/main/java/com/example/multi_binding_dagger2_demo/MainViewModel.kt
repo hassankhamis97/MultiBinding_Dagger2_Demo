@@ -25,12 +25,18 @@ class MainViewModel @Inject constructor(): ViewModel() {
 //    }
 //}
 
-class DaggerViewModelFactory @Inject constructor(private val viewModels: Map<Class<*>, @JvmSuppressWildcards ViewModel>): ViewModelProvider.Factory {
+class DaggerViewModelFactory @Inject constructor(private val viewModelsMap: Map<Class<*>, @JvmSuppressWildcards ViewModel>): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return viewModels[MainViewModel::class.java] as T
+        val viewModelsMapIterator = viewModelsMap.asIterable()
+        val firstViewModel = viewModelsMapIterator.firstOrNull()?.value
+        firstViewModel?.let {
+            if (modelClass.isAssignableFrom(firstViewModel::class.java)) {
+
+                return firstViewModel as T
+            }
         }
+
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
