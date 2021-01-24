@@ -1,5 +1,6 @@
 package com.example.multi_binding_dagger2_demo.di
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.multi_binding_dagger2_demo.DaggerViewModelFactory
 import com.example.multi_binding_dagger2_demo.MainViewModel
@@ -10,6 +11,8 @@ import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 import dagger.multibindings.IntoSet
 import dagger.multibindings.StringKey
+import java.util.stream.Collectors
+import java.util.stream.Collectors.toMap
 import javax.inject.Inject
 
 
@@ -60,4 +63,10 @@ abstract class AppModule {
 
     @Binds
     abstract fun bindViewModelFactory(daggerViewModelFactory: DaggerViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    @IntoMap
+    @ClassKey(MainViewModel::class)
+    abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+
 }
