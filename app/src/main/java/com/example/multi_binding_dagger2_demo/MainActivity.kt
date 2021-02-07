@@ -8,7 +8,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
-    private val TAG = "MainActivity"
+    private val TAG = "MultiBinding_Dagger2_Demo"
     @Inject
     lateinit var stringProvider: StringProvider
 
@@ -16,5 +16,6 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate: $stringProvider")
+        Log.d(TAG, "onCreate: ${stringProvider.provide()}")
     }
 }
