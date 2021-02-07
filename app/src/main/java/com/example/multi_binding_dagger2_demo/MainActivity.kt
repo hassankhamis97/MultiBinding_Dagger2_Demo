@@ -9,7 +9,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
-    private val TAG = "StringProvider"
+    private val TAG = "MultiBinding_Dagger2_Demo"
     @Inject
     lateinit var stringProvider: Map<Class<*>, @JvmSuppressWildcards StringProvider>
 
