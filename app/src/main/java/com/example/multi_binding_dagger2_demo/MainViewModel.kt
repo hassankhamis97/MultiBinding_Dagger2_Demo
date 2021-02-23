@@ -28,12 +28,15 @@ class MainViewModel @Inject constructor(): ViewModel() {
 class DaggerViewModelFactory @Inject constructor(private val viewModelsMap: Map<Class<*>, @JvmSuppressWildcards ViewModel>): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
-        val viewModelsMapIterator = viewModelsMap.asIterable()
-        val firstViewModel = viewModelsMapIterator.firstOrNull()?.value
-        firstViewModel?.let {
-            if (modelClass.isAssignableFrom(firstViewModel::class.java)) {
+        var requiredViewModel = viewModelsMap[modelClass]
+        if (requiredViewModel == null) {
+            val viewModelsMapIterator = viewModelsMap.asIterable()
+            requiredViewModel = viewModelsMapIterator.firstOrNull()?.value
+        }
+        requiredViewModel?.let {
+            if (modelClass.isAssignableFrom(requiredViewModel::class.java)) {
 
-                return firstViewModel as T
+                return requiredViewModel as T
             }
         }
 
