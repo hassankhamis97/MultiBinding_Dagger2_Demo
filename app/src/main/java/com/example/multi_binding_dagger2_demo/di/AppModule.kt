@@ -11,13 +11,13 @@ interface StringProvider {
     fun provide(): String
 }
 
-class HelloWorldStringProviderImp @Inject constructor(): StringProvider {
+class HelloWorldStringProviderImpl @Inject constructor(): StringProvider {
     override fun provide(): String {
         return "Hello World"
     }
 }
 
-class WelcomeStringProviderImp @Inject constructor(): StringProvider {
+class WelcomeStringProviderImpl @Inject constructor(): StringProvider {
     override fun provide(): String {
         return "Welcome"
     }
@@ -32,18 +32,18 @@ abstract class AppModule {
 
 //    @Binds
 //    @IntoSet
-//    abstract fun bindHelloWorld(helloWorldStringProviderImp: HelloWorldStringProviderImp): StringProvider
+//    abstract fun bindHelloWorld(helloWorldStringProviderImpl: HelloWorldStringProviderImpl): StringProvider
 //
 //    @Binds
 //    @IntoSet
-//    abstract fun bindWelcome(welcomeStringProviderImp: WelcomeStringProviderImp): StringProvider
+//    abstract fun bindWelcome(welcomeStringProviderImpl: WelcomeStringProviderImpl): StringProvider
 
     companion object {
         @Provides
         fun provideStringProvider(): Set<StringProvider> {
             return setOf(
-                    HelloWorldStringProviderImp(),
-                    WelcomeStringProviderImp()
+                    HelloWorldStringProviderImpl(),
+                    WelcomeStringProviderImpl()
             )
         }
     }
