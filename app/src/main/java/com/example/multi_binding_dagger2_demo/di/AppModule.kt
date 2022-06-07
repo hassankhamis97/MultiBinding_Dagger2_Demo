@@ -11,7 +11,7 @@ interface StringProvider {
     fun provide(): String
 }
 
-class HelloWorldStringProviderImp @Inject constructor(): StringProvider {
+class HelloWorldStringProviderImpl @Inject constructor(): StringProvider {
     override fun provide(): String {
         return "Hello World"
     }
@@ -20,10 +20,10 @@ class HelloWorldStringProviderImp @Inject constructor(): StringProvider {
 @Module
 abstract class AppModule {
 //    @Provides
-//    fun provideStringProviderImp(): StringProvider{
-//        return HelloWorldStringProviderImp()
+//    fun provideStringProviderImpl(): StringProvider{
+//        return HelloWorldStringProviderImpl()
 //    }
 
     @Binds
-    abstract fun bindHelloWorld(helloWorldStringProviderImp: HelloWorldStringProviderImp): StringProvider
+    abstract fun bindHelloWorld(helloWorldStringProviderImpl: HelloWorldStringProviderImpl): StringProvider
 }
