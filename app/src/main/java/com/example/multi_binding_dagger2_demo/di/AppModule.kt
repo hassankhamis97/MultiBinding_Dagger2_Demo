@@ -2,11 +2,8 @@ package com.example.multi_binding_dagger2_demo.di
 
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
-import dagger.multibindings.IntoSet
-import dagger.multibindings.StringKey
 import javax.inject.Inject
 
 
@@ -14,13 +11,13 @@ interface StringProvider {
     fun provide(): String
 }
 
-class HelloWorldStringProviderImp @Inject constructor(): StringProvider {
+class HelloWorldStringProviderImpl @Inject constructor(): StringProvider {
     override fun provide(): String {
         return "Hello World"
     }
 }
 
-class WelcomeStringProviderImp @Inject constructor(): StringProvider {
+class WelcomeStringProviderImpl @Inject constructor(): StringProvider {
     override fun provide(): String {
         return "Welcome"
     }
@@ -47,11 +44,11 @@ abstract class AppModule {
 
     @Binds
     @IntoMap
-    @ClassKey(HelloWorldStringProviderImp::class)
-    abstract fun bindHelloWorld(helloWorldStringProviderImp: HelloWorldStringProviderImp): StringProvider
+    @ClassKey(HelloWorldStringProviderImpl::class)
+    abstract fun bindHelloWorld(helloWorldStringProviderImpl: HelloWorldStringProviderImpl): StringProvider
 
     @Binds
     @IntoMap
-    @ClassKey(WelcomeStringProviderImp::class)
-    abstract fun bindWelcome(welcomeStringProviderImp: WelcomeStringProviderImp): StringProvider
+    @ClassKey(WelcomeStringProviderImpl::class)
+    abstract fun bindWelcome(welcomeStringProviderImpl: WelcomeStringProviderImpl): StringProvider
 }
